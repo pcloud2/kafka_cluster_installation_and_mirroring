@@ -1,1 +1,1 @@
-# kafka_cluster_installation_and_mirroring
+# kafka cluster installation and mirroring
