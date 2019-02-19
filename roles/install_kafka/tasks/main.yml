@@ -1,0 +1,7 @@
+---
+# tasks file for kafka
+
+- include_tasks: pre-requisite.yml
+- include_tasks: build.yml
+- include_tasks: configure.yml
+- include_tasks: systemd.yml

@@ -1,0 +1,18 @@
+---
+# defaults file for t.zookeeper
+
+zookeeper_max_connection: 0
+zookeeper_ticktime: 2000
+zookeeper_init_limit: 10
+zookeeper_sync_limit: 5
+
+# Uniquely identifies the ZooKeeper instance when clustering ZooKeeper nodes.
+# This value is placed in the /data/zookeeper/myid file.
+zookeeper_leader_port: 2888
+zookeeper_election_port: 3888
+
+# Rolling file appender settting
+zookeeper_rolling_log_file_max_size: 10MB
+zookeeper_max_rolling_log_file_count: 10
+
+vm_swappiness: 60

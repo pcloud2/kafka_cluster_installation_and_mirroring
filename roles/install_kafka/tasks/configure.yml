@@ -1,0 +1,19 @@
+---
+
+- name: Configuring Broker Properties
+  template:
+    src: server_properties.j2
+    dest: "{{ kafka_conf_dir }}/config/server.properties"
+    backup: yes
+  notify:
+    - restart kafka
+
+
+- name: Change Ownership for Broker Directory.
+  file:
+    path: "{{ kafka_conf_dir }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+    recurse: yes
+

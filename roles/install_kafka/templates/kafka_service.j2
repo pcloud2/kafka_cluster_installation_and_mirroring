@@ -1,0 +1,15 @@
+# {{ansible_managed}}
+
+[Unit]
+Requires=zookeeper.service
+After=zookeeper.service
+
+[Service]
+Type=simple
+User={{ kafka_user }}
+ExecStart=/bin/sh -c '{{ kafka_conf_dir }}/bin/kafka-server-start.sh {{ kafka_conf_dir }}/config/server.properties > {{ kafka_conf_dir }}/kafka.log 2>&1'
+ExecStop={{ kafka_conf_dir }}/bin/kafka-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target

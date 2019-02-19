@@ -1,0 +1,5 @@
+---
+
+- name: Install Dependency Packages
+  yum:
+    name: "{{ packages }}"

@@ -1,0 +1,8 @@
+
+bootstrap.servers={% for hosts in source_server %}{{ hosts }}:{{ kafka_port }}{% if not loop.last %},{% endif %}{% endfor %}
+
+exclude.internal.topics={{ exclude_internal_topics }}
+client.id={{ consumer_client_id }}
+group.id={{ group_id }}
+auto.offset.reset={{ auto_offset_reset }}
+partition.assignment.strategy={{ partition_assignment_strategy }}

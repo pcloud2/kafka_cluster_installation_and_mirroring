@@ -1,0 +1,45 @@
+---
+
+### Setup Repository ###
+repos_with_items:
+  - name: docker-ce-stable
+    description: Docker CE Stable - $basearch
+    file: docker-ce
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    enabled: yes
+
+  - name: docker-ce-stable-debuginfo
+    description: Docker CE Stable - Debuginfo $basearch
+    file: docker-ce
+    baseurl: https://download.docker.com/linux/centos/7/debug-$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    enabled: no
+
+  - name: docker-ce-stable-source
+    description: Docker CE Stable - Sources
+    file: docker-ce
+    baseurl: https://download.docker.com/linux/centos/7/source/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    enabled: no
+
+packages:
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2
+  - epel-release
+
+### Docker ###
+docker_edition: 'ce'
+docker_package: "docker-{{ docker_edition }}"
+docker_package_state: present
+
+## Service options ##
+docker_service_enabled: true
+docker_restart_handler_state: started
+
+## Install Docker-py ##
+docker_module: docker-py

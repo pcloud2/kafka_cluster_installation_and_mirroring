@@ -1,0 +1,14 @@
+---
+
+zookeeper_hosts: "{{ groups['zookeeper-nodes'][0] }}:{{ zookeeper_client_port }}"
+
+topics:
+  - topic_name: topic3
+    replication_factor: 3
+    partitions: 3
+  - topic_name: topic4
+    replication_factor: 3
+    partitions: 3
+  - topic_name: topic5
+    replication_factor: 3
+    partitions: 3

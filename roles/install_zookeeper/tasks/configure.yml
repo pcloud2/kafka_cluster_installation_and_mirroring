@@ -1,0 +1,33 @@
+---
+
+- name: Configuring Znode IDs
+  template:
+    src: znode_id.j2
+    dest: "{{ zookeeper_data_dir }}/myid"
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+
+- name: Configuring Zookeeper
+  template:
+    src: znodes_properties.j2
+    dest: "{{ zookeeper_conf_dir }}/config/zookeeper.properties"
+    backup: yes 
+  notify:
+    - restart zookeeper
+
+- name: Configuring Zookeeper Logging Properties
+  template:
+    src: znode_log4j.j2
+    dest: "{{ zookeeper_conf_dir }}/config/log4j.properties"
+    backup: yes
+  notify:
+    - restart zookeeper
+
+- name: Change ownership for zookeeper directory.
+  file:
+    path: "{{ zookeeper_conf_dir }}"
+    state: directory
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    recurse: yes
+

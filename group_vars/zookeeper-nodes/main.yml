@@ -1,0 +1,19 @@
+---
+
+zookeeper_group: "{{ user }}"
+zookeeper_user: "{{ user }}"
+
+kafka_version: 2.0.0
+scala_version: 2.11
+
+kafka_url: https://www-eu.apache.org/dist/kafka/
+
+install_java: y
+java_version: java-1.8.0-openjdk
+java_dev_version: java-1.8.0-openjdk-devel
+
+zookeeper_data_dir: /mnt/zookeeper
+zookeeper_tarball_dir: /home/{{ zookeeper_user }}/Downloads
+zookeeper_conf_dir: /home/{{ zookeeper_user }}/zookeeper
+
+zookeeper_client_port: 2181

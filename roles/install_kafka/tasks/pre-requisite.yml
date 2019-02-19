@@ -1,0 +1,18 @@
+---
+
+- name: Installing Java
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - "{{ java_version }}"
+      - "{{ java_dev_version }}"
+  when: install_java == 'y'
+
+- name: Install Dependency Packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - nc
+      - wget

@@ -1,0 +1,10 @@
+
+bootstrap.servers={% for hosts in destination_servers %}{{ hosts }}:{{ kafka_port }}{% if not loop.last %},{% endif %}{% endfor %}
+
+acks={{ acks }}
+batch.size={{ batch_size }}
+client.id={{ producer_client_id }}
+key.serializer={{ key_serializer }}
+value.serializer={{ value_serializer }}
+max.in.flight.requests.per.connection={{ max_in_flight_requests }}
+retries={{ max_retries }}

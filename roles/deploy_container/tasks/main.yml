@@ -1,0 +1,12 @@
+---
+
+- name: Deploy Kafka-MirrorMaker Process
+  docker_container:
+    name: "kafka-mirror-c{{ item }}"
+    image: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    recreate: yes
+    detach: yes
+    tty: yes
+    interactive: yes
+    etc_hosts: "{{ domain_ip_mapping }}"
+  with_sequence: count="{{ number_of_process_to_deploy }}"

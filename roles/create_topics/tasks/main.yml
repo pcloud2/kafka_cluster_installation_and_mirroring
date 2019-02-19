@@ -1,0 +1,15 @@
+---
+
+- name: Creating  Kafka topics
+  command: >
+    bin/kafka-topics.sh
+    --zookeeper {{ zookeeper_hosts }}/{{ kafka_application_dir }}
+    --create
+    --topic {{ item.topic_name }}
+    --replication-factor {{ item.replication_factor }}
+    --partitions {{ item.partitions }}
+  with_items: "{{ topics }}"
+  run_once: true
+  args:
+    chdir: "{{ kafka_conf_dir }}"
+

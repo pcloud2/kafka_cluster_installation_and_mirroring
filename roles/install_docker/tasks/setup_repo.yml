@@ -1,0 +1,12 @@
+---
+
+- name: Add Docker Stable Repo
+  yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    file: "{{ item.file }}"
+    baseurl: "{{ item.baseurl }}"
+    gpgcheck: "{{ item.gpgcheck }}"
+    enabled: "{{ item.enabled }}"
+    gpgkey: "{{ item.gpgkey }}"
+  with_items: "{{ repos_with_items }}"

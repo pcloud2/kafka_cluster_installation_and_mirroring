@@ -1,0 +1,32 @@
+---
+
+- name: Create Base Directories for Mirror Maker Configuration
+  file:
+    path: "{{ mirror_maker_dir }}"
+    state: directory
+    owner: "{{ kafka_user}}"
+    group: "{{ kafka_group}}"
+
+- name: Generating Producer Properties file
+  template:
+    src: producer.j2
+    dest: "{{ mirror_maker_dir }}/producer.properties"
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+    backup: yes
+
+- name: Generating Consumer Properties file
+  template:
+    src: consumer.j2
+    dest: "{{ mirror_maker_dir }}/consumer.properties"
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+    backup: yes
+
+- name: Generating Dockerfile
+  template:
+    src: dockerfile_mirror.j2
+    dest: "{{ mirror_maker_dir }}/Dockerfile"
+    group: "{{ kafka_group }}"
+    owner: "{{ kafka_user }}"
+    backup: yes

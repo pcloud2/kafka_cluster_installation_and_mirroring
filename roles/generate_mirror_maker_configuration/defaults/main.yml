@@ -1,0 +1,31 @@
+---
+
+## Update the Stream per your number of consumer ###
+stream_count: 1
+
+### Producer Configuration ###
+
+destination_servers:
+  - br-c2-dev-1.lab
+  - br-c2-dev-2.lab
+  - br-c2-dev-3.lab
+acks: -1
+batch_size: 1000
+producer_client_id: mirror_maker_producer
+key_serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+value_serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+max_in_flight_requests: 1
+max_retries: 5
+
+
+### Consumer Configuration ###
+
+source_server:
+  - br-c1-dev-1.lab
+  - br-c1-dev-2.lab
+  - br-c1-dev-3.lab
+exclude_internal_topics: true
+consumer_client_id: mirror_maker_consumer
+group_id: mirror_maker_consumer
+auto_offset_reset: earliest
+partition_assignment_strategy: org.apache.kafka.clients.consumer.RoundRobinAssignor

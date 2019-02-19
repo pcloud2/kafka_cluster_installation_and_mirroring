@@ -1,0 +1,13 @@
+[zookeeper-nodes]
+br1.lab     zookeeper_id=1      ansible_host=br1.lab
+br2.lab     zookeeper_id=2      ansible_host=br2.lab
+br3.lab     zookeeper_id=3      ansible_host=br3.lab
+
+[kafka-nodes]
+br1.lab    broker_id=1  ansible_host=br1.lab
+br2.lab    broker_id=2  ansible_host=br2.lab
+br3.lab    broker_id=3  ansible_host=br3.lab
+
+[development:children]
+zookeeper-nodes
+kafka-nodes

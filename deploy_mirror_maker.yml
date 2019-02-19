@@ -1,0 +1,11 @@
+---
+
+- import_playbook: topic_create.yml
+
+- import_playbook: docker_install.yml
+
+- import_playbook: generate_mirroring_config.yml
+
+- import_playbook: docker_build_image.yml
+
+- import_playbook: deploy_container.yml

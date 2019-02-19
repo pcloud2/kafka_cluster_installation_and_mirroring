@@ -1,0 +1,27 @@
+---
+
+- name: Installing Docker-ce
+  yum:
+    name: "{{ docker_package }}"
+    state: "{{ docker_package_state }}"
+  notify:
+    - restart docker
+
+- meta: flush_handlers
+
+- name: Adding user to docker Group
+  user:
+    name: "{{ user }}"
+    groups: docker
+    append: yes
+
+- name: Installing Additional Packages for Docker
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - python-pip
+
+- name: Install docker module for Ansible
+  pip:
+    name: "{{ docker_module }}"

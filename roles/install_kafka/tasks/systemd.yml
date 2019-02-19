@@ -1,0 +1,18 @@
+---
+
+- name: Configuring Kafka Systemd Script
+  template:
+    src: kafka_service.j2
+    dest: /etc/systemd/system/kafka.service
+  notify:
+    - restart kafka
+
+- name: Reload Kafka Service
+  command: systemctl daemon-reload
+
+- name: Enable Kafka Service
+  service:
+    name: kafka
+    enabled: yes
+
+- meta: flush_handlers

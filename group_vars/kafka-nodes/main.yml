@@ -1,0 +1,28 @@
+---
+
+### Kafka Cluster Environemnt Variable
+kafka_group: "{{ user }}"
+kafka_user: "{{ user }}"
+
+kafka_version: 2.0.0
+scala_version: 2.11
+
+kafka_url: https://www-eu.apache.org/dist/kafka/
+
+install_java: y
+java_version: java-1.8.0-openjdk
+java_dev_version: java-1.8.0-openjdk-devel
+
+kafka_data_dir: /mnt/kafka
+kafka_tarball_dir: /home/{{ kafka_user }}/Downloads
+kafka_conf_dir: /home/{{ kafka_user }}/kafka
+kafka_application_dir: kafka
+
+zookeeper_client_port: 2181
+kafka_port: 9092
+
+### Kafka Mirror Maker Configuration ###
+
+mirror_maker_dir: /home/{{ kafka_user }}/mirror_config/
+docker_image_name: kafka-mirroring
+docker_image_tag: latest

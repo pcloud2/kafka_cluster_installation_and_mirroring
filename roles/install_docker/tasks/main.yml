@@ -1,0 +1,7 @@
+---
+
+- include_tasks: pre-requisite.yml
+
+- include_tasks: setup_repo.yml
+
+- include_tasks: install.yml

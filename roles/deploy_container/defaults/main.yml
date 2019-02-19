@@ -1,0 +1,14 @@
+---
+
+number_of_process_to_deploy: 1
+
+docker_context: "{{ mirror_maker_dir }}"
+
+## List of Hostname and IPaddress need to updated in container /etc/hosts file.
+domain_ip_mapping:
+  br-c1-dev-1.lab: "173.39.230.209"
+  br-c1-dev-2.lab: "173.39.230.182"
+  br-c1-dev-3.lab: "173.39.230.250"
+  br-c2-dev-1.lab: "173.39.230.224"
+  br-c2-dev-2.lab: "173.39.230.206"
+  br-c2-dev-3.lab: "173.39.230.109"

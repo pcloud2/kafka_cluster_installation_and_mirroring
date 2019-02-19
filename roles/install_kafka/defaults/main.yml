@@ -1,0 +1,15 @@
+---
+
+## Kafka Configuration Parameters
+kafka_port: 9092
+delete_topic_enable: true
+log_dirs: "{{ kafka_data_dir }}"
+num_partitions: 8
+default_replication_factor: 3
+min_insync_replicas: 2
+log_retention_hours:  168
+log_segment_bytes: 1073741824
+log_retention_check_interval: 300000
+zookeeper_connection_timeout: 6000
+auto_create_topics: true
+kafka_application_dir: kafka

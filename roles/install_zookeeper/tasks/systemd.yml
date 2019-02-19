@@ -1,0 +1,20 @@
+---
+
+- name: Configuring Zookeeper Systemctl Script
+  template:
+    src: znode_service.j2
+    dest: /etc/systemd/system/zookeeper.service
+  when: ansible_service_mgr == 'systemd'
+  notify:
+    - restart zookeeper
+
+- name: Reload systemctl daemon
+  command: systemctl daemon-reload
+
+- name: Enable Zookeeper Service
+  service:
+    name: zookeeper
+    enabled: yes
+
+
+- meta: flush_handlers

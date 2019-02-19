@@ -1,0 +1,9 @@
+---
+
+- name: Validating if Zookeeper is Healthy
+  command: echo "stat" | nc "{{ inventory_hostname }}" {{ zookeeper_client_port }} 
+  with_items: groups['zookeeper-nodes'] 
+  register: nc_return
+
+- debug:
+    msg: "{{ nc_return }}"

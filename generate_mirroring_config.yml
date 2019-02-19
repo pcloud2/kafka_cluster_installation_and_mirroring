@@ -1,0 +1,9 @@
+---
+
+- name: Generate Mirror Maker Configuration
+  hosts: kafka-nodes
+  user: "{{ kafka_user }}"
+  gather_facts: yes
+  become: yes
+  roles:
+    - { role: generate_mirror_maker_configuration, state: "present", when: "ansible_os_family== 'RedHat' and ansible_distribution_major_version == '7'"}

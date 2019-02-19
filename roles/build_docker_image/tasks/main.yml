@@ -1,0 +1,15 @@
+---
+
+- name: Copy Executable to Docker Hosts
+  copy:
+   dest: "{{ docker_context }}"
+   src: start_mirror.sh
+   group: "{{ kafka_group }}"
+   owner: "{{ kafka_user }}"
+
+- name: Build Docker Image from Dockerfile
+  docker_image:
+    name: "{{ docker_image_name }}"
+    tag: "{{ docker_image_tag }}"
+    state: "present"
+    path: "{{ docker_context }}"

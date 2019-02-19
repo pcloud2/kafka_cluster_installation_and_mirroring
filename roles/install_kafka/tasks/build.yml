@@ -1,0 +1,31 @@
+---
+
+- name: Create Base Directories for Brokers
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ kafka_tarball_dir }}"
+    - "{{ kafka_conf_dir }}"
+    - "{{ kafka_data_dir }}"
+
+- name: Change ownership for Brokers Data Directory
+  file:
+    path: "{{ kafka_data_dir }}"
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+
+
+- name: Download Kafka Archive
+  get_url:
+    url: https://www-eu.apache.org/dist/kafka/{{ kafka_version }}/kafka_{{ scala_version }}-{{ kafka_version }}.tgz
+    dest: "{{ kafka_tarball_dir }}"
+
+
+- name: Unpack Kafka
+  unarchive:
+    src: "{{ kafka_tarball_dir }}/kafka_{{ scala_version }}-{{ kafka_version }}.tgz"
+    extra_opts: ['--strip-components=1']
+    dest: "{{ kafka_conf_dir }}"
+    remote_src: yes

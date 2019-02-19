@@ -1,0 +1,36 @@
+# {{ ansible_managed }}
+
+# the location to store the in-memory database snapshots and, unless specified otherwise, the transaction log of updates to the database.
+dataDir={{ zookeeper_data_dir }}
+
+# the port at which the clients will connect
+clientPort={{ zookeeper_client_port }}
+
+# disable the per-ip limit on the number of connections since this is a non-production config
+maxClientCnxns={{ zookeeper_max_connection }}
+
+# the basic time unit in milliseconds used by ZooKeeper. It is used to do heartbeats and the minimum session timeout will be twice the tickTime.
+tickTime={{ zookeeper_ticktime }}
+
+
+# The number of ticks that the initial
+# synchronization phase can take
+initLimit={{ zookeeper_init_limit }}
+
+
+# The number of ticks that can pass between
+# sending a request and getting an acknowledgement
+syncLimit={{ zookeeper_sync_limit }}
+
+
+# List of clustered ZooKeeper nodes.
+# Port 2888 is the default quorum port and 3888 is the default
+# leader election port. These must be unique per server.
+# Each server also needs a /var/lib/zookeeper/myid file created containing
+# a single unique number, e.g. 1, 2, etc.
+#server.1=hostname1:2888:3888
+#server.2=hostname2:2888:3888
+
+{% for host in groups['zookeeper-nodes'] %}
+server.{{ hostvars[host].zookeeper_id }}={{ hostvars[host]['ansible_host'] }}:{{ zookeeper_leader_port }}:{{ zookeeper_election_port }}
+{% endfor %}
