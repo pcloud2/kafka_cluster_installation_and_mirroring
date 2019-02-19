@@ -1,4 +1,4 @@
 ---
 
 ### Ansible SSH Key ###
-ansible_ssh_private_key_file: ~/kafka-dev.pem
+ansible_ssh_private_key_file: ~/kafka-lab.pem
